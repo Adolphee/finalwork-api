@@ -54,6 +54,18 @@ public class Student{
     @JsonBackReference
     private Collection<Course> subscriptions;
 
+    @ManyToMany @JoinTable(name = "friends",
+            joinColumns = {@JoinColumn(name="student1_id")}, inverseJoinColumns={@JoinColumn(name="student2_id")} )
+    //@Where(clause = "status='accepted'")
+    @JsonBackReference
+    private Collection<Student> friends;
+
+    @ManyToMany @JoinTable(name = "friendRequests",
+            joinColumns = {@JoinColumn(name="student1_id")}, inverseJoinColumns={@JoinColumn(name="student2_id")} )
+    //@Where(clause = "status='pending'")
+    @JsonBackReference
+    private Collection<Student> friendRequests;
+
     public Collection<Course> getSubscriptions() {
         return subscriptions;
     }
