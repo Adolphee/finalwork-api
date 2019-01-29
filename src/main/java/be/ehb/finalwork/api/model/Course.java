@@ -36,6 +36,9 @@ public class Course {
     private Timestamp updatedOn;
     @Column(name = "is_active") @ColumnDefault(value = "1")
     private boolean isActive = true;
+
+    private String imageUrl;
+
     // Relations
     @ManyToMany @JoinTable(name = "subscriptions",
             joinColumns = {@JoinColumn(name="course_id")}, inverseJoinColumns={@JoinColumn(name="student_id")} )
@@ -133,5 +136,13 @@ public class Course {
 
     public void setTeachers(Collection<Teacher> teachers) {
         this.teachers = teachers;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
