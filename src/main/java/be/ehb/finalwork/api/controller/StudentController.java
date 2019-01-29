@@ -25,6 +25,11 @@ public class StudentController {
         return repository.findAllByIsTeacherIsFalse();
     }
 
+    @GetMapping(value = {"/search/{query}"})
+    public Iterable<Student> search(@PathVariable @NotNull String query){
+        return repository.findAllByUsernameContaining(query);
+    }
+
     @GetMapping(value = "/{id}")
     @NotFound
     public Student getById(@PathVariable Long id) throws StudentNotFoundException{

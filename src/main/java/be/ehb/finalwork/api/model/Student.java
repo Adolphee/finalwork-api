@@ -21,6 +21,8 @@ public class Student{
     private String firstname;
     @NotNull @NotEmpty
     private String lastname;
+    @Transient
+    public String fullname;
     @NotNull @NotEmpty
     private String fieldOfStudy;
     @NotNull @Min(1)
@@ -88,6 +90,10 @@ public class Student{
 
     public void setFirstname(String firstname) {
         this.firstname = firstname;
+        this.fullname = firstname;
+        if(!(lastname.isEmpty() || lastname == null)){
+            this.fullname += " " + lastname;
+        }
     }
 
     public String getLastname() {
@@ -96,6 +102,10 @@ public class Student{
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+        if (!(firstname.isEmpty() || firstname == null)) {
+            this.fullname = firstname + " ";
+        }
+        fullname += lastname;
     }
 
     public String getFieldOfStudy() {
@@ -192,5 +202,9 @@ public class Student{
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public String getFullname() {
+        return firstname + " " + lastname;
     }
 }
