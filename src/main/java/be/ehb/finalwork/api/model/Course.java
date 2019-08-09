@@ -19,7 +19,6 @@ import java.util.Collection;
 public class Course {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @NotNull @NotEmpty
     private String name;
     @NotNull @NotEmpty @Length(max = 100)

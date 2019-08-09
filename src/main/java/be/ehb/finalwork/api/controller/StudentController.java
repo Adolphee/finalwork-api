@@ -1,6 +1,7 @@
 package be.ehb.finalwork.api.controller;
 
 import be.ehb.finalwork.api.exception.StudentNotFoundException;
+import be.ehb.finalwork.api.model.LoginForm;
 import be.ehb.finalwork.api.model.Student;
 import be.ehb.finalwork.api.repository.StudentRepository;
 import javassist.NotFoundException;
@@ -14,11 +15,20 @@ import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/api/students")
 @Validated
 public class StudentController {
     @Autowired
     private StudentRepository repository;
+
+    @PostMapping(value = {"/auth"})
+    public Student authenticate(@Valid @RequestBody LoginForm form) throws StudentNotFoundException{
+        Optional<Student> student = repository.findDistinctFirstByEmailEqualsAndPasswordEquals(form.getEmail(), form.getPassword());
+        if(student.isPresent()){
+            return student.get();
+        }
+        throw new StudentNotFoundException();
+    }
 
     @GetMapping(value = {"", "/"})
     public Iterable<Student> getAll(){

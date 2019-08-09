@@ -1,6 +1,7 @@
 package be.ehb.finalwork.api.controller;
 
 import be.ehb.finalwork.api.exception.TeacherNotFoundException;
+import be.ehb.finalwork.api.model.LoginForm;
 import be.ehb.finalwork.api.model.Teacher;
 import be.ehb.finalwork.api.repository.TeacherRepository;
 import org.hibernate.annotations.NotFound;
@@ -13,11 +14,20 @@ import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/teachers")
+@RequestMapping("/api/teachers")
 @Validated
 public class TeacherController {
     @Autowired
     private TeacherRepository repository;
+
+    @PostMapping(value = {"/auth"})
+    public Teacher authenticate(@Valid @RequestBody LoginForm form) throws TeacherNotFoundException{
+        Optional<Teacher> student = repository.findDistinctFirstByEmailEqualsAndPasswordEquals(form.getEmail(), form.getPassword());
+        if(student.isPresent()){
+            return student.get();
+        }
+        throw new TeacherNotFoundException();
+    }
 
     @GetMapping(value = {"", "/"})
     public Iterable<Teacher> getAll(){

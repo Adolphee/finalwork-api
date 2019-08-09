@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/courses")
+@RequestMapping("/api/courses")
 @Validated
 public class CourseController {
     @Autowired

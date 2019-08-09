@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.Date;
 
 @Entity(name = "users")
-@Where(clause = "is_active=true")
+@Where(clause = "is_active=true and is_teacher = false")
 @Validated
 public class Student{
     @NotNull
