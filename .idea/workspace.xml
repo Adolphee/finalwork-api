@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="998db002-5676-4ab7-92b9-cf1a50750c77" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/be/ehb/finalwork/api/model/Answer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/be/ehb/finalwork/api/model/Question.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/be/ehb/finalwork/api/repository/QuizRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/ehb/finalwork/api/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/ehb/finalwork/api/controller/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/ehb/finalwork/api/model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/ehb/finalwork/api/model/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/be/ehb/finalwork/api/controller/CourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/be/ehb/finalwork/api/controller/CourseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/be/ehb/finalwork/api/model/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/be/ehb/finalwork/api/model/Course.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,6 +56,12 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="be.ehb.finalwork.api.repository" />
+      <recent name="be.ehb.finalwork.api.controller" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -81,7 +95,7 @@
       <updated>1548515290492</updated>
       <workItem from="1548515292917" duration="2412000" />
       <workItem from="1565212759456" duration="5042000" />
-      <workItem from="1565289958271" duration="14439000" />
+      <workItem from="1565289958271" duration="25294000" />
     </task>
     <servers />
   </component>
