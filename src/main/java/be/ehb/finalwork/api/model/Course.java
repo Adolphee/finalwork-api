@@ -1,5 +1,6 @@
 package be.ehb.finalwork.api.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity(name = "courses")
 @Where(clause = "is_active=true")
@@ -45,6 +47,10 @@ public class Course {
     @ManyToMany @JoinTable(name = "teachers",
             joinColumns = {@JoinColumn(name="course_id")}, inverseJoinColumns={@JoinColumn(name="teacher_id")} )
     private Collection<Teacher> teachers;
+
+    @OneToMany(mappedBy="course")
+    @JsonBackReference
+    private Set<Question> questions;
 
     public Course() {
     }
@@ -143,5 +149,13 @@ public class Course {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Iterable<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(Set<Question> questions) {
+        this.questions = questions;
     }
 }
