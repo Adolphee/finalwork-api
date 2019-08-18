@@ -3,7 +3,6 @@ package be.ehb.finalwork.api.controller;
 
 import be.ehb.finalwork.api.exception.CourseNotFoundException;
 import be.ehb.finalwork.api.model.Course;
-import be.ehb.finalwork.api.model.Question;
 import be.ehb.finalwork.api.model.Quiz;
 import be.ehb.finalwork.api.repository.CourseRepository;
 import be.ehb.finalwork.api.repository.QuizRepository;

@@ -7,11 +7,14 @@ import be.ehb.finalwork.api.repository.StudentRepository;
 import javassist.NotFoundException;
 import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.MediaTypeEditor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.awt.*;
 import java.util.Optional;
 
 @RestController
@@ -58,7 +61,7 @@ public class StudentController {
 
     @PutMapping(value = "/{id}")
     @NotFound
-    public Student update(@NotNull @PathVariable Long id, @Valid @RequestBody Student student) throws StudentNotFoundException{
+    public Student update(@NotNull @PathVariable Long id,@RequestBody Student student) throws StudentNotFoundException{
         Optional<Student> s = repository.findById(id);
         if(s.isPresent()){
             student.setId(id);

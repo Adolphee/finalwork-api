@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Set;
@@ -25,15 +26,13 @@ public class Course {
     private String name;
     @NotNull @NotEmpty @Length(max = 100)
     private String description;
-    @NotNull @NotEmpty
     private Integer progressyear;
-    @NotNull @NotEmpty
     private Integer weight;
     @NotNull @NotEmpty
     private String fieldOfStudy;
-    @NotNull @NotEmpty @CreationTimestamp
+    @CreationTimestamp
     private Timestamp createdOn;
-    @NotNull @NotEmpty @UpdateTimestamp
+    @UpdateTimestamp
     private Timestamp updatedOn;
     @Column(name = "is_active") @ColumnDefault(value = "1")
     private boolean isActive = true;

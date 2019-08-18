@@ -1,10 +1,12 @@
 package be.ehb.finalwork.api.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.lang.Nullable;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -14,29 +16,33 @@ import java.util.Date;
 
 @Entity(name = "users")
 @Where(clause = "is_active=true and is_teacher = false")
-@Validated
 public class Student{
-    @NotNull
-    @NotEmpty
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Nullable
     private String firstname;
-    @NotNull @NotEmpty
+    @Nullable
     private String lastname;
-    @Transient
+    @Transient @Nullable
     public String fullname;
-    @NotNull @NotEmpty
+    @Nullable
     private String fieldOfStudy;
-    @NotNull @Min(1)
+    @Min(1) @Nullable
     private Integer progressyear;
+    @Nullable
     private Date birthDate;
-    @NotNull @NotEmpty @Email
+    @Nullable @Email
     private String email;
-    @NotNull @NotEmpty @Length(min=3, max=30)
+    @Nullable @Length(min=3, max=30)
     private String username;
-    @NotNull @NotEmpty @Length(min=8, max=30)
+    @Nullable @Length(min=8, max=30)
     private String password;
+    @Nullable @JsonIgnore
     private String salt;
     @Column(name = "is_teacher") @ColumnDefault(value = "0")
     private Boolean isTeacher = false;
+    @Nullable
     private Integer rank;
     private Long experience;
     private String slogan;
@@ -47,25 +53,21 @@ public class Student{
         setTeacher(false);
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToMany @JoinTable(name = "subscriptions",
             joinColumns = {@JoinColumn(name="student_id")}, inverseJoinColumns={@JoinColumn(name="course_id")} )
-    @JsonBackReference
+    @JsonBackReference(value = "student_course")
     private Collection<Course> subscriptions;
 
     @ManyToMany @JoinTable(name = "friends",
             joinColumns = {@JoinColumn(name="student1_id")}, inverseJoinColumns={@JoinColumn(name="student2_id")} )
     //@Where(clause = "status='accepted'")
-    @JsonBackReference
+    @JsonBackReference (value = "student_friends")
     private Collection<Student> friends;
 
     @ManyToMany @JoinTable(name = "friendRequests",
             joinColumns = {@JoinColumn(name="student1_id")}, inverseJoinColumns={@JoinColumn(name="student2_id")} )
     //@Where(clause = "status='pending'")
-    @JsonBackReference
+    @JsonBackReference(value = "student_friend_requests")
     private Collection<Student> friendRequests;
 
     public Collection<Course> getSubscriptions() {
